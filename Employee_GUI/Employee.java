@@ -7,11 +7,7 @@ public class Employee implements Serializable, Comparable<Employee> {
     private String employeeName;
     private String employeeDepartment;
     private Long employeePhoneNumber;
-	
-	public Employee() {
-		
-	}
-	
+
 	public Employee(Long id, String name, String dept, Long phone) {
 		setEmployeeID(id);
 		setEmployeeName(name);
@@ -30,18 +26,17 @@ public class Employee implements Serializable, Comparable<Employee> {
     public void setEmployeePhoneNumber(Long employeePhoneNumber) {
         this.employeePhoneNumber = employeePhoneNumber;
     }
-
     public Long getEmployeeID() {
-        return this.employeeID;
+        return employeeID;
     }
     public String getEmployeeName() {
-        return this.employeeName;
+        return employeeName;
     }
     public String getEmployeeDepartment() {
-        return this.employeeDepartment;
+        return employeeDepartment;
     }
     public Long getEmployeePhoneNumber() {
-        return this.employeePhoneNumber;
+        return employeePhoneNumber;
     }
     @Override
     public String toString() {

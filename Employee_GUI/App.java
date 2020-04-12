@@ -9,8 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
 public class App extends Frame {
 	
 	private Panel p;
@@ -30,8 +28,8 @@ public class App extends Frame {
 		addBtn.setFont(new Font("Sans Serif", Font.BOLD, 22));
 		
 		addBtn.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ae) {
-					
+			
+			public void actionPerformed(ActionEvent ae) {					
 					Dialog d = new Dialog(App.this, "Add Employee");
 					GridLayout g = new GridLayout(5, 2);
 					g.setHgap(30);
@@ -94,8 +92,8 @@ public class App extends Frame {
 		viewBtn.setPreferredSize(new Dimension(100, 100));
 		viewBtn.setFont(new Font("Sans Serif", Font.BOLD, 22));
 		viewBtn.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ae) {
-						
+			
+			public void actionPerformed(ActionEvent ae) {			
 						Dialog d = new Dialog(App.this, "View Records");
 						JTable table = new JTable();
 						final Class[] columnClass = new Class[] {
@@ -147,6 +145,7 @@ public class App extends Frame {
 		updateBtn.setPreferredSize(new Dimension(100, 100));
 		updateBtn.setFont(new Font("Sans Serif", Font.BOLD, 22));
 		updateBtn.addActionListener(new ActionListener(){
+			
 			public void actionPerformed(ActionEvent ae) {
 				
 						Dialog d = new Dialog(App.this, "Update Employee");				

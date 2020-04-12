@@ -24,6 +24,7 @@ import java.nio.file.Paths;
 
 
 class Employee implements Serializable, Comparable<Employee> {
+
     private static final long serialVersionUID = 1L;
     private Long employeeID;
     private String employeeName;
@@ -115,10 +116,10 @@ public class Main extends Employee {
         ObjectOutputStream oos = null;
         try {
             if(append == false) {
-            fos = new FileOutputStream(f);
-            oos = new ObjectOutputStream(fos);
-            oos.writeObject(e);
-			System.out.println("Writing Employee with ID: "+e.getEmployeeID()+" in "+f.getAbsolutePath());
+				fos = new FileOutputStream(f);
+				oos = new ObjectOutputStream(fos);
+				oos.writeObject(e);
+				System.out.println("Writing Employee with ID: "+e.getEmployeeID()+" in "+f.getAbsolutePath());
             }
             else {
                 oos = new AppendingObjectOutputStream(new FileOutputStream(f, append));
@@ -175,7 +176,6 @@ public class Main extends Employee {
 				System.out.println("File Does not exists");
 			fin = new FileInputStream(f);
 			prop.load(fin);
-			
 			Set<String> keys = prop.stringPropertyNames();
 			for(String key : keys) {
 				if(key.equals(Long.toString(id)))
@@ -193,7 +193,6 @@ public class Main extends Employee {
 		ArrayList<Employee> al = null;
 		System.out.println("Enter ID of Employee whose Phone Number you want to update");
 		Long id = Long.parseLong(br.readLine());
-		
 		String fileName = readPropertiesFile(id);
 		if(fileName == null) {
 			 System.out.println("Sorry, Employee ID does not exists");
@@ -201,19 +200,19 @@ public class Main extends Employee {
 		} 
 		else{
 			try {
-			al = read(new File(fileName));
+				al = read(new File(fileName));
 			}
 			catch(FileNotFoundException fe) {
-			System.out.println(fe.getMessage());
-			return ;
+				System.out.println(fe.getMessage());
+				return ;
 			}
 			catch(IOException ioe) {
-			System.out.println(ioe.getMessage());
-			return ;
+				System.out.println(ioe.getMessage());
+				return ;
 			}
 			catch(ClassNotFoundException cce) {
-			System.out.println(cce.getMessage());
-			return;
+				System.out.println(cce.getMessage());
+				return;
 			} 
 			String name = getEmployeeRecord(al, id).get(1);
 			String dept = getEmployeeRecord(al, id).get(2);
@@ -301,27 +300,26 @@ public class Main extends Employee {
 		String directory = Paths.get("").toAbsolutePath().toString();
 		File[] afl = new File(directory).listFiles();
 		Arrays.sort(afl, new Comparator<File>() {
-		@Override
-		public int compare(File o1, File o2) {
-			int n1 = extractNumber(o1.getName());
-			int n2 = extractNumber(o2.getName());
-			return n1 - n2;
-		}
-
-		private int extractNumber(String name) {
-			int i = 0;
-			try {
-				int s = name.indexOf(' ') + 1;
-				int e = name.lastIndexOf('.');
-				String number = name.substring(s, e);
-				i = Integer.parseInt(number);
-			} catch(Exception e) {
-				i = 0;
+			@Override
+			public int compare(File o1, File o2) {
+				int n1 = extractNumber(o1.getName());
+				int n2 = extractNumber(o2.getName());
+				return n1 - n2;
 			}
-			return i;
-		}
-        }
-        );
+
+			private int extractNumber(String name) {
+				int i = 0;
+				try {
+					int s = name.indexOf(' ') + 1;
+					int e = name.lastIndexOf('.');
+					String number = name.substring(s, e);
+					i = Integer.parseInt(number);
+				} catch(Exception e) {
+					i = 0;
+				}
+				return i;
+			}
+        });
 		for (int i = 0; i < afl.length; ++i) {
 			if (afl[i].isFile() && afl[i].getName().endsWith(".ser")) {
 				al.add(afl[i].getName());
@@ -333,15 +331,15 @@ public class Main extends Employee {
 	public static Employee returnObjectAfterSetting() throws IOException {
 		Employee e = new Employee();
 		try {
-		System.out.println("Enter Employee ID: ");
-		Long i = Long.parseLong(br.readLine());
-		e.setEmployeeID(i);
-		System.out.println("Enter Employee Name: ");
-		e.setEmployeeName(br.readLine());
-		System.out.println("Enter Employee Department: ");
-		e.setEmployeeDepartment(br.readLine());
-		System.out.println("Enter Employee Phone Number: ");
-		e.setEmployeePhoneNumber(Long.parseLong(br.readLine()));
+			System.out.println("Enter Employee ID: ");
+			Long i = Long.parseLong(br.readLine());
+			e.setEmployeeID(i);
+			System.out.println("Enter Employee Name: ");
+			e.setEmployeeName(br.readLine());
+			System.out.println("Enter Employee Department: ");
+			e.setEmployeeDepartment(br.readLine());
+			System.out.println("Enter Employee Phone Number: ");
+			e.setEmployeePhoneNumber(Long.parseLong(br.readLine()));
 		}
 		catch(Exception x) {
 			x.printStackTrace();

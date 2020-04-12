@@ -32,13 +32,8 @@ public class Main  {
 	static File f1 = null;
 	public static int ic = 0;
 	public static int fc = 1;
-	
 	public static int total = 0;
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	
-	public Main() {
-		
-	}
 	
     public static ArrayList<Employee> read(File f) throws Exception {
         ArrayList<Employee> al = new ArrayList<Employee>();
@@ -78,10 +73,10 @@ public class Main  {
         ObjectOutputStream oos = null;
         try {
             if(append == false) {
-            fos = new FileOutputStream(f);
-            oos = new ObjectOutputStream(fos);
-            oos.writeObject(e);
-			System.out.println("Writing Employee with ID: "+e.getEmployeeID()+" in "+f.getAbsolutePath());
+				fos = new FileOutputStream(f);
+				oos = new ObjectOutputStream(fos);
+				oos.writeObject(e);
+				System.out.println("Writing Employee with ID: "+e.getEmployeeID()+" in "+f.getAbsolutePath());
             }
             else {
                 oos = new AppendingObjectOutputStream(new FileOutputStream(f, append));
@@ -210,19 +205,19 @@ public class Main  {
 		} 
 		else{
 			try {
-			al = read(new File(fileName));
+				al = read(new File(fileName));
 			}
 			catch(FileNotFoundException fe) {
-			System.out.println(fe.getMessage());
-			return false;
+				System.out.println(fe.getMessage());
+				return false;
 			}
 			catch(IOException ioe) {
-			System.out.println(ioe.getMessage());
-			return false;
+				System.out.println(ioe.getMessage());
+				return false;
 			}
 			catch(ClassNotFoundException cce) {
-			System.out.println(cce.getMessage());
-			return false;
+				System.out.println(cce.getMessage());
+				return false;
 			} 
 			String name = getEmployeeRecord(al, id).get(1);
 			String dept = getEmployeeRecord(al, id).get(2);
@@ -311,27 +306,26 @@ public class Main  {
 		String directory = Paths.get("").toAbsolutePath().toString();
 		File[] afl = new File(directory).listFiles();
 		Arrays.sort(afl, new Comparator<File>() {
-		@Override
-		public int compare(File o1, File o2) {
-			int n1 = extractNumber(o1.getName());
-			int n2 = extractNumber(o2.getName());
-			return n1 - n2;
-		}
-
-		private int extractNumber(String name) {
-			int i = 0;
-			try {
-				int s = name.indexOf(' ') + 1;
-				int e = name.lastIndexOf('.');
-				String number = name.substring(s, e);
-				i = Integer.parseInt(number);
-			} catch(Exception e) {
-				i = 0;
+			@Override
+			public int compare(File o1, File o2) {
+				int n1 = extractNumber(o1.getName());
+				int n2 = extractNumber(o2.getName());
+				return n1 - n2;
 			}
-			return i;
-		}
-        }
-        );
+
+			private int extractNumber(String name) {
+				int i = 0;
+				try {
+					int s = name.indexOf(' ') + 1;
+					int e = name.lastIndexOf('.');
+					String number = name.substring(s, e);
+					i = Integer.parseInt(number);
+				} catch(Exception e) {
+					i = 0;
+				}
+				return i;
+			}
+        });
 		for (int i = 0; i < afl.length; ++i) {
 			if (afl[i].isFile() && afl[i].getName().endsWith(".ser")) {
 				al.add(afl[i].getName());
